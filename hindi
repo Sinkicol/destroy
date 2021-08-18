@@ -1,4 +1,4 @@
-local toxicity = {"nuked by romans admin","use it today best admin","🪐"} -- Add things you want to be spammed on the screen in here
+local toxicity = {"nuked by romans admin 😎 ","use it today best admin 😎 ","nuked by romans admin 😎 "} -- Add things you want to be spammed on the screen in here
 -- Put messages in quotes, and separate with commas
  
 while wait(0.1) do

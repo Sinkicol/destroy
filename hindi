@@ -1,0 +1,49 @@
+local toxicity = {"nuked by romans admin","use it today best admin","🪐"} -- Add things you want to be spammed on the screen in here
+-- Put messages in quotes, and separate with commas
+ 
+while wait(0.1) do
+    msg = ""
+    for i = 1,math.random(20,70) do
+       msg = msg.."\n"
+    end
+    msg = string.sub(msg, 0, #msg - 1)
+    for i = 1,math.random(0,300) do
+        msg = msg.." "
+    end
+    for i = 1,math.random(0,100) do
+        msg = msg..toxicity[math.random(1,#toxicity)].." "
+    end
+    game.Players:Chat(msg)
+    for i,v in pairs(game.Players:GetChildren()) do
+        if v ~= nil then
+            if v.Character ~= nil then
+                if v.Character:FindFirstChild("Humanoid") then
+                    game.ReplicatedStorage.Event:FireServer("TPD", v.Character.Humanoid.Health + 1000, v.Character.Humanoid)
+                    game.ReplicatedStorage.Event:FireServer("TPD", math.huge, v.Character.Humanoid)
+                end
+            end
+        end
+    end
+end
+ 
+for i,v in pairs(game.Players:GetChildren()) do
+    v.CharacterAdded:Connect(function(char)
+        repeat wait(0.000000000000000001) until char:FindFirstChild("Humanoid")
+        repeat
+            game.ReplicatedStorage.Event:FireServer("TPD", char:FindFirstChild("Humanoid").Health + 1000, char.Humanoid)
+            game.ReplicatedStorage.Event:FireServer("TPD", math.huge, char.Humanoid)
+            wait(0.000000000000001)
+        until char:FindFirstChild("Humanoid").Health <= 10
+    end)
+end
+ 
+game.Players.PlayerAdded:Connect(function(v)
+    v.CharacterAdded:Connect(function(char)
+        repeat wait(0.000000000000000001) until char:FindFirstChild("Humanoid")
+        repeat
+            game.ReplicatedStorage.Event:FireServer("TPD", char:FindFirstChild("Humanoid").Health + 1000, char.Humanoid)
+            game.ReplicatedStorage.Event:FireServer("TPD", math.huge, char.Humanoid)
+            wait(0.000000000000001)
+        until char:FindFirstChild("Humanoid").Health <= 10
+    end)
+end)
